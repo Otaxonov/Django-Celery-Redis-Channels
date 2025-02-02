@@ -1,0 +1,25 @@
+{% extends 'jokes/base.html' %}
+
+{% block content %}
+
+<center><h1>Real time Jokes app using Django, Celery, Redis, Channels</h1></center><hr>
+
+<fieldset>
+    <legend>Joke:</legend>
+    <p id="joke">{{ joke }}</p>
+</fieldset>
+
+{% endblock content %}
+
+{% block scripts %}
+
+<script>
+    var socket = new WebSocket('ws:localhost:8000/ws/jokes/');
+
+    socket.onmessage = function(event){
+        var joke = event.data;
+        document.querySelector('#joke').innerText = joke;
+    }
+</script>
+
+{% endblock scripts %}
