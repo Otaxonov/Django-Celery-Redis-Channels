@@ -20,7 +20,7 @@ services:
     image: postgres:latest
     container_name: my-postgres-container
     ports:
-      - "5432:5432"
+      - "5434:5432"
     environment:
       POSTGRES_DB: jokes
       POSTGRES_USER: jokes
@@ -34,7 +34,7 @@ services:
     container_name: my-redis-container
     restart: unless-stopped
     ports:
-      - "6379:6379"
+      - "6374:6379"
     volumes:
       - redis_data:/data
 
