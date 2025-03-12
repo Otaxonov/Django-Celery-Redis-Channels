@@ -14,7 +14,7 @@
 {% block scripts %}
 
 <script>
-    var socket = new WebSocket('ws:localhost:8000/ws/jokes/');
+    var socket = new WebSocket('ws:0.0.0.0:8000/ws/jokes/');
 
     socket.onmessage = function(event){
         var joke = event.data;
