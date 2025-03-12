@@ -1,6 +1,6 @@
 amqp==5.3.1
 asgiref==3.8.1
-attrs==25.1.0
+attrs==25.2.0
 autobahn==24.4.2
 Automat==24.8.1
 billiard==4.2.1
@@ -31,8 +31,8 @@ kombu==5.4.2
 msgpack==1.1.0
 packaging==24.2
 prompt_toolkit==3.0.50
-psycopg==3.2.5
-psycopg-binary==3.2.5
+psycopg==3.2.6
+psycopg-binary==3.2.6
 psycopg-pool==3.2.6
 pyasn1==0.6.1
 pyasn1_modules==0.4.1
