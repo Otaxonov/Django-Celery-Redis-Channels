@@ -62,5 +62,5 @@ services:
     ports:
       - "80:80"
 
-  volumes:
-    postgres_data:
+volumes:
+  postgres_data:
