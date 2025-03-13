@@ -22,9 +22,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: jokes
+      POSTGRES_USER: jokes
+      POSTGRES_PASSWORD: jokes
     restart: unless-stopped
     volumes:
       - postgres_data:/var/lib/postgresql/data
