@@ -82,7 +82,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'DCRCH.wsgi.application'
 ASGI_APPLICATION = 'DCRCH.asgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
