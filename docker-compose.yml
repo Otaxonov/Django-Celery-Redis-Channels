@@ -11,8 +11,6 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
-    env_file:
-      - ./.env
     depends_on:
       - postgres
       - redis
@@ -46,24 +44,10 @@ services:
     restart: always
     volumes:
       - .:/app
-    env_file:
-      - ./.env
     depends_on:
       - postgres
       - redis
       - app
-
-  flower:
-    image: my-app-image
-    container_name: my-flower-container
-    command: celery -A DCRCH flower --basic_auth=admin:password123
-    restart: always
-    ports:
-      - "5555:5555"
-    env_file:
-      - ./.env
-    depends_on:
-      - redis
 
   beat:
     image: my-app-image
@@ -72,8 +56,6 @@ services:
     restart: always
     volumes:
       - .:/app
-    env_file:
-      - ./.env
     depends_on:
       - redis
       - app
