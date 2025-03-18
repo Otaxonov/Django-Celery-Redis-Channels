@@ -66,6 +66,7 @@ services:
     build: ./nginx
     image: my-nginx-image
     container_name: my-nginx-container
+    restart: unless-stopped
     ports:
       - "80:80"
     depends_on:
