@@ -62,6 +62,15 @@ services:
       - redis
       - app
 
+  nginx:
+    build: ./nginx
+    image: my-nginx-image
+    container_name: my-nginx-container
+    ports:
+      - "80:80"
+    depends_on:
+      - django_app
+
 volumes:
   postgres_data:
   redis_data:
