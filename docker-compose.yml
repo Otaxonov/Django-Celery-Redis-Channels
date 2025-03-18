@@ -1,30 +1,18 @@
 name: my-docker-project
 
 services:
-  app:
-    build: .
-    image: my-app-image
-    container_name: my-app-container
-    command: /app/entrypoint.sh
-    restart: always
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/app
-    depends_on:
-      - postgres
-      - redis
-
   postgres:
     image: postgres
     container_name: my-postgres-container
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"
     environment:
-      POSTGRES_DB: jokes
-      POSTGRES_USER: jokes
-      POSTGRES_PASSWORD: jokes
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     restart: unless-stopped
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -32,16 +20,30 @@ services:
     image: "redis:alpine"
     container_name: my-redis-container
     restart: unless-stopped
-    ports:
-      - "6379:6379"
+    expose:
+      - "6379"
     volumes:
       - redis_data:/data
+
+  app:
+    build: .
+    image: my-app-image
+    container_name: my-app-container
+    command: /app/entrypoint.sh
+    restart: unless-stopped
+    expose:
+      - "8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+      - redis
 
   celery:
     image: my-app-image
     container_name: my-celery-container
     entrypoint: /app/celery_worker.sh
-    restart: always
+    restart: unless-stopped
     volumes:
       - .:/app
     depends_on:
@@ -53,7 +55,7 @@ services:
     image: my-app-image
     container_name: my-beat-container
     entrypoint: /app/celery_beat.sh
-    restart: always
+    restart: unless-stopped
     volumes:
       - .:/app
     depends_on:
